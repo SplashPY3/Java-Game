@@ -75,6 +75,9 @@ public class Main {
                 playerOptions.add("slam");
                 playerOptions.add("potion");
                 playerOptions.add("defense");
+
+                poisoned = false;
+                enemyPoisoned = false;
             }
 
             while (enemy.HP > 0 && character.HP > 0) { // the main game loop
@@ -112,7 +115,7 @@ public class Main {
                         character.HP -= p_dmg;
                         poison_time--;
                     } if (poison_time == 0) {
-                        System.out.println("\nYou're no longer poisoned");
+//                        System.out.println("\nYou're no longer poisoned");
                         poisoned = false;
                     }
 
@@ -120,10 +123,10 @@ public class Main {
                         enemy.HP -= p_dmg;
                         enemy_poison_time--;
                         if (enemy_poison_time > 0) { // extra if statement for the text below not to pop up when I don't
-                            System.out.println("Poison lasts for " + enemy_poison_time + " turns"); // need it
+                            System.out.println("Enemy is poisoned for " + enemy_poison_time + " turns"); // need it
                         }
                     } if (enemy_poison_time == 0) {
-                        enemyPoisoned = false; // un-poisoning the character when it's time
+                        enemyPoisoned = false; // un-poisoning the enemy when it's time
                     }
 
                     if (choice.equalsIgnoreCase("slay") && playerOptions.contains(choice)) {
@@ -326,6 +329,7 @@ public class Main {
                     gameOver = false; // logic stuff
                     player_turn = true;
                     newGame = true;
+                    poisoned = false;
                     if (playerHP < 50) { // capping player HP at 50, so he doesn't get too OP
                         playerHP += 10;
                     }
